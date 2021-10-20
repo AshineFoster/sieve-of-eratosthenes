@@ -1,4 +1,3 @@
-const NUMTO10: [u8; 10] = [0, 1, 1, 0, 1, 0, 1, 0, 0, 0];
 const LIMIT: usize = 1_000_000;
 
 fn main() {
@@ -30,12 +29,6 @@ fn set_composite(values: &mut [u8]) -> &[u8] {
     values
 }
 
-#[test]
-fn test_set_composite() {
-    let mut test_array: [u8; 100] = [1; 100];
-    assert_eq!(set_composite(&mut test_array[0..10]), NUMTO10);
-}
-
 /// returns a vector of the prime numbers in the given array
 fn get_primes(values: &[u8]) -> Vec<usize> {
     let mut primes = Vec::new();
@@ -48,7 +41,21 @@ fn get_primes(values: &[u8]) -> Vec<usize> {
     primes
 }
 
-#[test]
-fn test_get_primes() {
-    assert_eq!(get_primes(&NUMTO10), vec![2, 3, 5, 7]);
+#[cfg(test)]
+mod test_sieve {
+
+    use super::*;
+
+    const NUMTO10: [u8; 10] = [0, 1, 1, 0, 1, 0, 1, 0, 0, 0];
+
+    #[test]
+    fn test_set_composite() {
+        let mut test_array: [u8; 100] = [1; 100];
+        assert_eq!(set_composite(&mut test_array[0..10]), NUMTO10);
+    }
+
+    #[test]
+    fn test_get_primes() {
+        assert_eq!(get_primes(&NUMTO10), vec![2, 3, 5, 7]);
+    }
 }
