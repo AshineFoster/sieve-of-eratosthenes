@@ -1,12 +1,30 @@
-const LIMIT: usize = 1_000_000;
+use std::env;
+const LIMIT: usize = 8_000_000;
 
 fn main() {
+    // input and parse limit from command line
+    let cmd_args: Vec<String> = env::args().collect();
+
+    let limit = match cmd_args.get(1) {
+        Some(lim) => lim,
+        None => panic!("Please enter a number from 2 to {} inclusive.", LIMIT),
+    };
+
+    let limit: usize = match limit.parse() {
+        Ok(lim) => lim,
+        Err(_) => panic!("Please enter a number from 2 to {} inclusive.", LIMIT),
+    };
+
+    if limit < 2 || limit > LIMIT {
+        panic!("Please enter a number from 2 to {} inclusive.", LIMIT)
+    }
+
     // create a array of integers
     let mut values: [u8; LIMIT] = [1; LIMIT];
     // set value as composite if it is a multiple of another number
-    set_composite(&mut values);
+    set_composite(&mut values[0..limit]);
     // gets the prime numbers
-    let primes = get_primes(&values);
+    let primes = get_primes(&values[0..limit]);
     // print values that are prime
     println!("Prime numbers:");
     println!("{:?}", primes);
