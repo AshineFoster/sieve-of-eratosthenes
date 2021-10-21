@@ -1,11 +1,11 @@
 # Sieve of Eratosthenes
 
-Finds all prime numbers less than 1,000,000 using the sieve of Eratosthenes.
+Finds all prime numbers up to the user specified value (less than 8,000,000)
+using the sieve of Eratosthenes.
 
 ## Preview
 
-![Primes file](prime1.png)
-![Primes file-2](prime2.png)
+![Primes file](prime.gif)
 
 ## Installation
 
@@ -16,9 +16,10 @@ If you already have a recent version of Rust installed just clone this repo.
 Open your terminal in the project directory and then run the command:
 
 ```sh
-cargo run
+cargo run 100
 ```
 
+This will print the prime numbers up to 100 in the terminal.
 ## License
 
 [GNU General Public License version 3](https://opensource.org/licenses/GPL-3.0)
