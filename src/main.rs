@@ -15,7 +15,7 @@ fn main() {
         Err(_) => panic!("Please enter a number from 2 to {} inclusive.", LIMIT),
     };
 
-    if limit < 2 || limit > LIMIT {
+    if !(2..=LIMIT).contains(&limit) {
         panic!("Please enter a number from 2 to {} inclusive.", LIMIT)
     }
 
