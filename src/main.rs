@@ -49,14 +49,12 @@ fn set_composite(values: &mut [u8]) -> &[u8] {
 
 /// returns a vector of the prime numbers in the given array
 fn get_primes(values: &[u8]) -> Vec<usize> {
-    let mut primes = Vec::new();
-
-    for (index, val) in values.iter().enumerate() {
-        if *val == 1 {
-            primes.push(index + 1)
-        }
-    }
-    primes
+    values
+        .iter()
+        .enumerate()
+        .filter(|(_, value)| **value == 1)
+        .map(|(index, _)| index + 1)
+        .collect()
 }
 
 #[cfg(test)]
