@@ -1,22 +1,24 @@
 use std::env;
+use std::process;
 const LIMIT: usize = 8_000_000;
 
 fn main() {
     // input and parse limit from command line
-    let cmd_args: Vec<String> = env::args().collect();
 
-    let limit = match cmd_args.get(1) {
-        Some(lim) => lim,
-        None => panic!("Please enter a number from 2 to {} inclusive.", LIMIT),
-    };
+    let limit = env::args().nth(1).unwrap_or_else(|| {
+        println!("USAGE:\tsieve_of_eratosthenes NUM");
+        println!("ARGS:\t<NUM>\tA number from 2 to {} inclusive.", LIMIT);
+        process::exit(1);
+    });
 
-    let limit: usize = match limit.parse() {
-        Ok(lim) => lim,
-        Err(_) => panic!("Please enter a number from 2 to {} inclusive.", LIMIT),
-    };
+    let limit: usize = limit.parse().unwrap_or_else(|err| {
+        println!("Error parsing value: {} '{}'", err, limit);
+        process::exit(1);
+    });
 
     if !(2..=LIMIT).contains(&limit) {
-        panic!("Please enter a number from 2 to {} inclusive.", LIMIT)
+        println!("Please enter a number from 2 to {} inclusive.", LIMIT);
+        process::exit(1);
     }
 
     // create a array of integers
