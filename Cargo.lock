@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "seive_of_eratosthenes"
+name = "sieve_of_eratosthenes"
 version = "0.1.0"
